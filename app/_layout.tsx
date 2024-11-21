@@ -1,41 +1,69 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
-import {View} f
-import { useColorScheme } from '@/hooks/useColorScheme';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
+export default function App() {
+  const [input, setInput] = useState('');
+  const [result, setResult] = useState('');
 
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
+  const handlePress = (value) => {
+    if (value === '=') {
+      try {
+        setResult(eval(input).toString());
+      } catch (e) {
+        setResult('Error');
+      }
+    } else if (value === 'C') {
+      setInput('');
+      setResult('');
+    } else {
+      setInput(input + value);
     }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
-  }
+  };
 
   return (
-    <View></View>
-
-    // <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-    //   <Stack>
-    //     <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-    //     <Stack.Screen name="+not-found" />
-    //   </Stack>
-    //   <StatusBar style="auto" />
-    // </ThemeProvider>
+    <View style={styles.container}>
+      <Text style={styles.input}>{input}</Text>
+      <Text style={styles.result}>{result}</Text>
+      <View style={styles.buttons}>
+        {['1', '2', '3', '+', '4', '5', '6', '-', '7', '8', '9', '*', 'C', '0', '=', '/'].map((value) => (
+          <TouchableOpacity key={value} style={styles.button} onPress={() => handlePress(value)}>
+            <Text style={styles.buttonText}>{value}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+  },
+  input: {
+    fontSize: 30,
+    marginBottom: 10,
+  },
+  result: {
+    fontSize: 40,
+    marginBottom: 20,
+  },
+  buttons: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  button: {
+    width: 80,
+    height: 80,
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 5,
+    backgroundColor: '#f0f0f0',
+    borderRadius: 10,
+  },
+  buttonText: {
+    fontSize: 30,
+  },
+});
