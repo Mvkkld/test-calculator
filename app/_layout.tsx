@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     borderRadius:10
   },
   nameText: {
-    fontSize: 22,
+    fontSize: 20,
     padding: 2,
     color: 'white',
     marginBottom: 40,
