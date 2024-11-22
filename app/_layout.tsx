@@ -22,6 +22,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.nameText}>Citizen</Text>
       <Text style={styles.input}>{input}</Text>
       <Text style={styles.result}>{result}</Text>
       <View style={styles.buttons}>
@@ -40,15 +41,38 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'green',
+    backgroundColor: 'gray',
+    borderRadius:10
+  },
+  nameText: {
+    fontSize: 20,
+    padding: 3,
+    color: 'white',
+    marginBottom: 30,
+    marginLeft: -265,
+    backgroundColor:'black',
+    borderRadius:10
+
   },
   input: {
-    fontSize: 30,
+    fontSize: 53,
     marginBottom: 10,
+    color: '#00000',
+    backgroundColor: 'white',
+    width: '95%',
+    height: 80,
+    borderRadius: 5,
+    marginTop: 25
   },
   result: {
     fontSize: 40,
     marginBottom: 20,
+    color: '#fff',
+    backgroundColor:'black',
+    width: '95%',
+    textAlign:'center',
+    borderRadius: 5
+
   },
   buttons: {
     flexDirection: 'row',
@@ -60,10 +84,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     margin: 5,
-    backgroundColor: '#f0f0f0',
-    borderRadius: 10,
+    backgroundColor: 'black',
+    borderRadius: 17,
   },
   buttonText: {
-    fontSize: 30,
+    fontSize: 36,
+    color: 'white'
   },
+  name:{
+    color:'#fff'
+  }
 });
