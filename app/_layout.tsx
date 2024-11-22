@@ -46,9 +46,9 @@ const styles = StyleSheet.create({
   },
   nameText: {
     fontSize: 20,
-    padding: 3,
+    padding: 2,
     color: 'white',
-    marginBottom: 30,
+    marginBottom: 40,
     marginLeft: -265,
     backgroundColor:'black',
     borderRadius:10
@@ -91,7 +91,4 @@ const styles = StyleSheet.create({
     fontSize: 36,
     color: 'white'
   },
-  name:{
-    color:'#fff'
-  }
-});
+ });
